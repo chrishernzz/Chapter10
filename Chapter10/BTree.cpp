@@ -11,7 +11,12 @@ BTree::BTree(int newData):data(newData), left(NULL),right(NULL),root(NULL){}
 //postcondition: going to then return that root is null meaning there are no nodes, if it is then its empty
 bool BTree::empty() const{
     //if the root is null, then there are no nodes or root
-    return root == NULL;
+    if (root == NULL) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 //precondition: going to pass in the BTree class and the input value
