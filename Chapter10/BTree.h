@@ -6,6 +6,8 @@ using namespace std;
 char inputChar(string prompt, string lookup);
 int inputInteger(string prompt);
 
+//precondition:
+//postcondition:
 class BTree{
 private:
 	//the type of nodes are going to be integers containers
@@ -22,7 +24,7 @@ public:
 	//constructor to be able to input the values (nodes)
 	BTree(int newData);
 
-	//check if its empty 
+	//check if there are root or nodes
 	bool empty() const;
 
 	//member functions to insert, count, search, preorder, inorder, and postorder traversal, and delete 

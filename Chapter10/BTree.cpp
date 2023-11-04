@@ -18,7 +18,6 @@ bool BTree::empty() const{
         return false;
     }
 }
-
 //precondition: going to pass in the BTree class and the input value
 //postcondition: going to then check if the value is less than the current data, if it is go left and if not go right and recursive 
 void BTree::insert(BTree* &node, int value){
@@ -35,7 +34,6 @@ void BTree::insert(BTree* &node, int value){
         insert(node->right, value);
     }
 }
-
 //precondition: going to pass in the BTree class and counts
 //postcondition: going to then preincrement the counts to keep track of both subtrees
 void BTree::count(BTree* node,int &counts){
@@ -75,9 +73,11 @@ void BTree::preorderTraversal(const BTree* node) {
     if (node == NULL) {
         return;
     }
-
+    //process the root first
     cout << "\t\t" << node->data << endl;
+    //recursive all the nodes on the left side first (subtree)
     preorderTraversal(node->left);
+    //after recursive all the nodes on the right side (subtree)
     preorderTraversal(node->right);
 }
 //precondition: going to pass in the BTree class
@@ -87,8 +87,11 @@ void BTree::inorderTraversal(const BTree* node){
     if (node == NULL) {
         return;
     }
+    //first proccessing the nodes on the left side first (subtree)
     inorderTraversal(node->left);
+    //then process the root
     cout << "\t\t" << node->data << endl;
+    //then process the nodes on the left side (subtree)
     inorderTraversal(node->right);
 }
 //precondition: going to pass in the BTree class
@@ -98,8 +101,11 @@ void BTree::postorderTraversal(const BTree* node){
     if (node == NULL) {
         return;
     }
+    //first proccessing the nodes on the left side first (subtree)
     postorderTraversal(node->left);
+    //then process the nodes on the left side (subtree)
     postorderTraversal(node->right);
+    //lastly get the root 
     cout << "\t\t" << node->data << endl;
 }
 //precondition: going to pass in the BTree class
@@ -121,7 +127,6 @@ void BTree::deleteEntireTree(BTree* node){
     //make sure the root is set to null to show that there are no more nodes or else it will have garbage data
     root = NULL;
 }
-
 //precondition: going to print the information
 //postcondition: going to create a menu that has options 
 void BTree::mainInformation(){
