@@ -8,6 +8,7 @@ int inputInteger(string prompt);
 
 class BTree{
 private:
+	//the type of nodes are going to be integers containers
 	int data;
 	//will keep track of the left child
 	BTree* left;
@@ -18,8 +19,11 @@ private:
 public:
 	//defualt constructor
 	BTree();
-	//constructor
+	//constructor to be able to input the values (nodes)
 	BTree(int newData);
+
+	//check if its empty 
+	bool empty() const;
 
 	//member functions to insert, count, search, preorder, inorder, and postorder traversal, and delete 
 	void insert(BTree* &node, int value);
