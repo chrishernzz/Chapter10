@@ -2,14 +2,15 @@
 
 //precondition: going to call the default constructor class
 //postcondition: going to then intialize the privates 
-BTree::BTree(): data(0), left(nullptr), right(nullptr),root(nullptr) {}
+BTree::BTree(): data(0), left(NULL), right(NULL),root(NULL) {}
 //precondition: going to call the constructor class
 //postcondition: going to then intialize the privates and data will now have newData
-BTree::BTree(int newData):data(newData), left(nullptr),right(nullptr),root(nullptr){}
+BTree::BTree(int newData):data(newData), left(NULL),right(NULL),root(NULL){}
 
 //precondition: going to make a function to check if its empty
 //postcondition: going to then return that root is null meaning there are no nodes, if it is then its empty
 bool BTree::empty() const{
+    //if the root is null, then there are no nodes or root
     return root == NULL;
 }
 
@@ -97,7 +98,7 @@ void BTree::postorderTraversal(const BTree* node){
     cout << "\t\t" << node->data << endl;
 }
 //precondition: going to pass in the BTree class
-//postcondition: going to then delete the node and set it to a nullptr
+//postcondition: going to then delete the node and set it to a null
 void BTree::deleteEntireTree(BTree* node){
     //if root (nodes) are null then return
     if (node == NULL) {
