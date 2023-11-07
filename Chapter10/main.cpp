@@ -68,7 +68,7 @@ void challenge1() {
 	Binary_Tree_Node<string>branch1, branch2;
 	branch1.setData("branch #1");
 	branch2.setData("branch #2");
-	//now set it to the left subtree (branch1) and right subtree (branch20
+	//now set it to the left subtree (branch1) and right subtree (branch2)
 	tree.setLeft(&branch1);
 	tree.setRight(&branch2);
 	cout << "\n\n";
