@@ -2,14 +2,17 @@
 
 //precondition: going to call the default constructor class
 //postcondition: going to then intialize the privates 
-BTree::BTree(): data(0), left(NULL), right(NULL),root(NULL) {}
+template<typename T>
+BTree<T>::BTree() : data(0), left(NULL), right(NULL), root(NULL) {}
 //precondition: going to call the constructor class
 //postcondition: going to then intialize the privates and data will now have newData
-BTree::BTree(int newData):data(newData), left(NULL),right(NULL),root(NULL){}
+template<typename T>
+BTree<T>::BTree(int newData) : data(newData), left(NULL), right(NULL), root(NULL) {}
 
 //precondition: going to make a function to check if its empty
 //postcondition: going to then return that root is null meaning there are no nodes, if it is then its empty
-bool BTree::empty() const{
+template<typename T>
+bool BTree<T>::empty() const {
     //if the root is null, then there are no nodes or root
     if (root == NULL) {
         return true;
@@ -20,10 +23,11 @@ bool BTree::empty() const{
 }
 //precondition: going to pass in the BTree class and the input value
 //postcondition: going to then check if the value is less than the current data, if it is go left and if not go right and recursive 
-void BTree::insert(BTree* &node, int value){
+template<typename T>
+void BTree<T>::insert(BTree*& node, T value) {
     //first check if the root or subtree is null, if its is run this and set the new node to it
     if (node == NULL) {
-        node =  new BTree(value);
+        node = new BTree(value);
     }
     //if the value is less than the data(node) then it will go to the left side of the subtree
     else if (value < node->data) {
@@ -36,7 +40,8 @@ void BTree::insert(BTree* &node, int value){
 }
 //precondition: going to pass in the BTree class and counts
 //postcondition: going to then preincrement the counts to keep track of both subtrees
-void BTree::count(BTree* node,int &counts){
+template<typename T>
+void BTree<T>::count(BTree* node, T& counts) {
     //if root (nodes) are null then return
     if (node == NULL) {
         return;
@@ -51,7 +56,8 @@ void BTree::count(BTree* node,int &counts){
 }
 //precondition: going to pass in the BTree class and the input value
 //postcondition: going to then check if the data (nodes) is equal to the value
-bool BTree::search(BTree* node, int value){
+template<typename T>
+bool BTree<T>::search(BTree* node, T value) {
     //if root (nodes) are null then return
     if (node == NULL) {
         return false;
@@ -62,14 +68,15 @@ bool BTree::search(BTree* node, int value){
     }
     //going to chekc if they are found in left and right subtrees
     bool found = search(node->left, value);
-    bool found2= search(node->right, value);
+    bool found2 = search(node->right, value);
     return found || found2;
 }
 
 //precondition: going to pass in the BTree class
 //postcondition: going to then print the pre order traversal 
-void BTree::preorderTraversal(const BTree* node) {
-    //if root (nodes) are null then return
+template<typename T>
+void BTree<T>::preorderTraversal(const BTree* node) {
+    //if root (nodes) are null then return (base stop)
     if (node == NULL) {
         return;
     }
@@ -82,8 +89,9 @@ void BTree::preorderTraversal(const BTree* node) {
 }
 //precondition: going to pass in the BTree class
 //postcondition: going to then print the in order traversal 
-void BTree::inorderTraversal(const BTree* node){
-    //if root (nodes) are null then return
+template<typename T>
+void BTree<T>::inorderTraversal(const BTree* node) {
+    //if root (nodes) are null then return (base stop)
     if (node == NULL) {
         return;
     }
@@ -96,8 +104,9 @@ void BTree::inorderTraversal(const BTree* node){
 }
 //precondition: going to pass in the BTree class
 //postcondition: going to then print the post order traversal 
-void BTree::postorderTraversal(const BTree* node){
-    //if root (nodes) are null then return
+template<typename T>
+void BTree<T>::postorderTraversal(const BTree* node) {
+    //if root (nodes) are null then return (base stop)
     if (node == NULL) {
         return;
     }
@@ -110,8 +119,9 @@ void BTree::postorderTraversal(const BTree* node){
 }
 //precondition: going to pass in the BTree class
 //postcondition: going to then delete the node and set it to a null
-void BTree::deleteEntireTree(BTree* node){
-    //if root (nodes) are null then return
+template<typename T>
+void BTree<T>::deleteEntireTree(BTree* node) {
+    //if root (nodes) are null then return (base stop)
     if (node == NULL) {
         return;
     }
@@ -129,11 +139,12 @@ void BTree::deleteEntireTree(BTree* node){
 }
 //precondition: going to print the information
 //postcondition: going to create a menu that has options 
-void BTree::mainInformation(){
+template<typename T>
+void BTree<T>::mainInformation() {
     system("cls");
     char choice;
     do {
-        cout << "\n\t1> bTree container";
+        cout << "\n\t2> bTree container";
         cout << "\n\t" << string(82, char(205));
         cout << "\n\t\tA> Insert a node/leaf";
         cout << "\n\t\tB> Count of Nodes/Leaves";
@@ -150,7 +161,7 @@ void BTree::mainInformation(){
         switch (toupper(choice)) {
         case 'A': {
             int insertInput = inputInteger("\n\t\tEnter an integer: ");
-            insert(root,insertInput);
+            insert(root, insertInput);
             cout << "\n";
             system("pause");
             system("cls");
@@ -255,4 +266,3 @@ void BTree::mainInformation(){
         }
     } while (true);
 }
-

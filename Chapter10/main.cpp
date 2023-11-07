@@ -6,7 +6,8 @@
 
 #include<iostream>
 #include"input (1).h"
-#include"BTree.h"
+#include"BTree.cpp"
+#include"Binary_Tree_Node.cpp"
 using namespace std;
 
 //prototype
@@ -50,12 +51,58 @@ int menuOption() {
 //precondition: 
 //postcondition: 
 void challenge1() {
+	system("cls");
+	//will hold all the nodes (the root as well)
+	Binary_Tree_Node<string> tree;
+	tree.setData("trunk");
+	cout << "\n\t1> Tree of strings";
+	cout << "\n\t" << string(82, char(205));
+	cout << "\n\n\tA> Created root (trunk) with no leaf.";
+	//call the print function
+	print_tree("\n\n\t\t", &tree, tree.isLeaf(), true, true);
+	//cout << "\n\n\t\t    " << tree.getData();
+	cout << "\n\tB> Root (trunk) grows two branches: branch #1 and branch #2.";
+	cout << "\n\t\tA branch of (branch #1) grows left of the root.";
+	cout << "\n\t\tA branch of (branch #2) grows right of the root.";
+	//create two branches (which are our subtrees) for branch #1 and branch #2
+	Binary_Tree_Node<string>branch1, branch2;
+	branch1.setData("branch #1");
+	branch2.setData("branch #2");
+	//now set it to the left subtree (branch1) and right subtree (branch20
+	tree.setLeft(&branch1);
+	tree.setRight(&branch2);
+	cout << "\n\n";
+	//call the print function
+	print_tree("\t\t", &tree, tree.isLeaf(), true, true);
+	cout << "\n\tC> Branches grows leaves.";
+	cout << "\n\n\t\tLeft branch (of branch #1) grows two leaves: leaf #1 and leaf #2.";
+	Binary_Tree_Node<string> leaf1, leaf2;
+	leaf1.setData("leaf #1");
+	leaf2.setData("leaf #2");
+	//now set left and right to branch1 (branch1 is our ancestor (parent) basically with childrens which are the leaf1 and leaf2)
+	branch1.setLeft(&leaf1);
+	branch1.setRight(&leaf2);
+	cout << "\n\n";
+	print_tree("\t\t", &tree, tree.isLeaf(), true, true);
+	cout << "\n\t\tRight branch of (branch #2) grows two leaves: leaf #3 and leaf #4.";
+	//now same thing but now branch2 will have another subtree with 2 leaves
+	Binary_Tree_Node<string> leaf3, leaf4;
+	leaf3.setData("leaf #3");
+	leaf4.setData("leaf #4");
+	//now set left and right to branch2, now branch2 who is the parent will have childrens that are leaf3 and leaf4
+	branch2.setLeft(&leaf3);
+	branch2.setRight(&leaf4);
+	cout << "\n\n";
+	print_tree("\t\t", &tree, tree.isLeaf(), true, true);
+
+
+	cout << "\n";
 
 }
-//precondition: going to call my BTree class
+//precondition: going to call my BTree class and create a template class that is an int
 //postcondition: going to then call my main menu information that has the options to do
 void challenge2() {
-	BTree menu;
+	BTree<int> menu;
 	menu.mainInformation();
 }
 //precondition: going to call my Costco class

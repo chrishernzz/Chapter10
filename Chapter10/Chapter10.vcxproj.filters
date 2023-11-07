@@ -21,12 +21,18 @@
     <ClCompile Include="BTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Binary_Tree_Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="input (1).h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Binary_Tree_Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

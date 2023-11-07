@@ -8,10 +8,11 @@ int inputInteger(string prompt);
 
 //precondition:
 //postcondition:
-class BTree{
+template<typename T >
+class BTree {
 private:
 	//the type of nodes are going to be integers containers
-	int data;
+	T data;
 	//will keep track of the left child
 	BTree* left;
 	//will keep track of the right child 
@@ -28,9 +29,9 @@ public:
 	bool empty() const;
 
 	//member functions to insert, count, search, preorder, inorder, and postorder traversal, and delete 
-	void insert(BTree* &node, int value);
-	void count(BTree* node,int &count);
-	bool search(BTree* node, int value);
+	void insert(BTree*& node, T value);
+	void count(BTree* node, T& count);
+	bool search(BTree* node, T value);
 	void preorderTraversal(const BTree* node);
 	void inorderTraversal(const BTree* node);
 	void postorderTraversal(const BTree* node);
@@ -39,4 +40,3 @@ public:
 	//member function main menu
 	void mainInformation();
 };
-
