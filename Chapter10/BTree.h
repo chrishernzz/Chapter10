@@ -6,12 +6,12 @@ using namespace std;
 char inputChar(string prompt, string lookup);
 int inputInteger(string prompt);
 
-//precondition:
-//postcondition:
+//precondition: going to create a template that can have an int
+//postcondition: going to then have 4 privates and they are left and right childs, the root, and the data and then have member functions in the public
 template<typename T >
 class BTree {
 private:
-	//the type of nodes are going to be integers containers
+	//the type of nodes are going to be integers using a template containers
 	T data;
 	//will keep track of the left child
 	BTree* left;
