@@ -11,7 +11,7 @@ int inputInteger(string prompt);
 template<typename T >
 class BTree {
 private:
-	//the type of nodes are going to be integers containers
+	//the type of nodes are going to be integers using a template containers
 	T data;
 	//will keep track of the left child
 	BTree* left;

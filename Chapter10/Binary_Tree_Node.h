@@ -37,9 +37,10 @@ public:
 };
 
 template<class Item>
-void delete_tree(Binary_Tree_Node<Item>* leaf){ // Recursive
-    if (leaf == NULL)
+void delete_tree(const Binary_Tree_Node<Item>* leaf){ // Recursive
+    if (leaf == NULL) {
         return;
+    }
 
     /* first delete both subtrees */
     delete_tree(leaf->getLeft());
@@ -48,6 +49,7 @@ void delete_tree(Binary_Tree_Node<Item>* leaf){ // Recursive
     /* then delete the node */
     cout << "\n\t\tDeleting: " << leaf->getData();
     delete leaf;
+    leaf = NULL;
 }
 
 template<class Item>
