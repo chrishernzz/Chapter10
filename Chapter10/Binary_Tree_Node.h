@@ -39,8 +39,8 @@ public:
 //precondition:
 //postcondition:
 template<class Item>
-void delete_tree(const Binary_Tree_Node<Item>* leaf) { // Recursive
-    if (leaf == NULL) {
+void delete_tree(Binary_Tree_Node<Item>* leaf){ // Recursive
+    if (leaf == NULL)
         return;
     }
 

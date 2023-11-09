@@ -94,24 +94,8 @@ void challenge1() {
 	branch2.setRight(&leaf4);
 	cout << "\n\n";
 	print_tree("\t\t", &tree, tree.isLeaf(), true, true);
-	cout << "\n\tD> Left leaf sprouts and yields a fruit (apple).";
-	Binary_Tree_Node<string> fruit;
-	fruit.setData("apple");
-	//now set the left leaf#1 which is our ancestor ancestors to have a childfen fruit apple
-	leaf1.setLeft(&fruit);
-	cout << "\n\n";
-	print_tree("\t\t", &tree, tree.isLeaf(), true, true);
-	cout << "\n\tE> Right leaf sprouts and yields two fruits (orange coconut).";
-	Binary_Tree_Node<string>fruit1, fruit2;
-	fruit1.setData("orange");
-	fruit2.setData("coconut");
-	//now going to the parent leaf#3 to have childrens which are orange and coconut (they are siblings now) 
-	leaf3.setLeft(&fruit1);
-	leaf3.setRight(&fruit2);
-	cout << "\n\n";
-	print_tree("\t\t", &tree, tree.isLeaf(), true, true);
-	cout << "\n\tF> Delete tree.";
-	//delete_tree(&tree);
+
+
 	cout << "\n";
 }
 //precondition: going to call my BTree class and create a template class that is an int
