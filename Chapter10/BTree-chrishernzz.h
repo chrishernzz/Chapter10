@@ -6,8 +6,8 @@ using namespace std;
 char inputChar(string prompt, string lookup);
 int inputInteger(string prompt);
 
-//precondition:
-//postcondition:
+//precondition: going to create a template that can have an int
+//postcondition: going to then have 4 privates and they are left and right child, the root, and the data and then have member functions in the public
 template<typename T >
 class BTree {
 private:
@@ -20,7 +20,7 @@ private:
 	//will keep track of the nodes
 	BTree* root;
 public:
-	//defualt constructor
+	//default constructor
 	BTree();
 	//constructor to be able to input the values (nodes)
 	BTree(int newData);

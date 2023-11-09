@@ -6,12 +6,12 @@ template<class Item>
 Binary_Tree_Node<Item>::Binary_Tree_Node() : data(" "), left(NULL), right(NULL) {}
 //precondition: going to call the constructor class
 //postcondition: going to then initialize the privates and data will now have newData
-template<class Item>
-Binary_Tree_Node<Item>::Binary_Tree_Node(const Item& init_data, Binary_Tree_Node* init_left, Binary_Tree_Node* init_right) {
-	data = init_data;
-	left = init_left;
-	right = init_right;
-}
+//template<class Item>
+//Binary_Tree_Node<Item>::Binary_Tree_Node(const Item& init_data, Binary_Tree_Node* init_left, Binary_Tree_Node* init_right) {
+//	data = init_data;
+//	left = init_left;
+//	right = init_right;
+//}
 
 //precondition: going to get the data 
 //postcondition: going to return the private data (template class)
@@ -76,4 +76,3 @@ template<class Item>
 bool Binary_Tree_Node<Item>::isLeaf() const {
 	return (left == NULL && right == NULL);
 }
-
