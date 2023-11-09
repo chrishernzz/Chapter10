@@ -20,7 +20,7 @@ private:
 	//will keep track of the nodes
 	BTree* root;
 public:
-	//defualt constructor
+	//default constructor
 	BTree();
 	//constructor to be able to input the values (nodes)
 	BTree(int newData);

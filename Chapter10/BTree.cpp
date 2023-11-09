@@ -66,7 +66,7 @@ bool BTree<T>::search(BTree* node, T value) {
     if (node->data == value) {
         return true;
     }
-    //going to chekc if they are found in left and right subtrees
+    //going to check if they are found in left and right subtrees
     bool found = search(node->left, value);
     bool found2 = search(node->right, value);
     return found || found2;
@@ -95,7 +95,7 @@ void BTree<T>::inorderTraversal(const BTree* node) {
     if (node == NULL) {
         return;
     }
-    //first proccessing the nodes on the left side first (subtree)
+    //first processing the nodes on the left side first (subtree)
     inorderTraversal(node->left);
     //then process the root
     cout << "\t\t" << node->data << endl;
@@ -110,7 +110,7 @@ void BTree<T>::postorderTraversal(const BTree* node) {
     if (node == NULL) {
         return;
     }
-    //first proccessing the nodes on the left side first (subtree)
+    //first processing the nodes on the left side first (subtree)
     postorderTraversal(node->left);
     //then process the nodes on the left side (subtree)
     postorderTraversal(node->right);

@@ -13,12 +13,12 @@ private:
     //will keep track of the right child
     const Binary_Tree_Node* right;
 public:
-    //defualt constructor
+    //default constructor
     Binary_Tree_Node();
     //constructor
     Binary_Tree_Node(const Item& init_data, Binary_Tree_Node* init_left = NULL, Binary_Tree_Node* init_right = NULL);
 
-    //getters(accesors)
+    //getters(accessors)
     Item& getData();
     Binary_Tree_Node*& getLeft();
     Binary_Tree_Node*& getRight();
@@ -32,15 +32,13 @@ public:
     const Binary_Tree_Node* getLeft() const;
     const Binary_Tree_Node* getRight() const;
 
-    //check if its a leaf (no more substree)
+    //check if its a leaf (no more subtree)
     bool isLeaf() const;
 };
 
-//precondition:
-//postcondition:
 template<class Item>
-void delete_tree(Binary_Tree_Node<Item>* leaf){ // Recursive
-    if (leaf == NULL)
+void delete_tree(const Binary_Tree_Node<Item>* leaf) { // Recursive
+    if (leaf == NULL) {
         return;
     }
 
@@ -51,10 +49,8 @@ void delete_tree(Binary_Tree_Node<Item>* leaf){ // Recursive
     /* then delete the node */
     cout << "\n\t\tDeleting: " << leaf->getData();
     delete leaf;
-    leaf = NULL;
 }
-//precondition:
-//postcondition:
+
 template<class Item>
 void print_tree(const string& prefix, const Binary_Tree_Node<Item>* node, bool isLeft, bool root, bool last) {
     if (node != NULL) {
@@ -85,3 +81,4 @@ void print_tree(const string& prefix, const Binary_Tree_Node<Item>* node, bool i
         print_tree(prefix + (isLeft ? s : "    "), node->getRight(), false, false, true);
     }
 }
+
