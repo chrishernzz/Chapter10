@@ -25,7 +25,7 @@ bool BTree<T>::empty() const {
 //postcondition: going to then check if the value is less than the current data, if it is go left and if not go right and recursive 
 template<typename T>
 void BTree<T>::insert(BTree*& node, T value) {
-    //first check if the root or subtree is null, if its is run this and set the new node to it
+    //first check if the nodes are NULL, if its is run this and set the new node to it this, first input would be our root
     if (node == NULL) {
         node = new BTree(value);
     }
@@ -190,6 +190,7 @@ void BTree<T>::mainInformation() {
             else {
                 int searchInput = inputInteger("\n\t\tEnter an integer key to search: ");
                 bool found = search(root, searchInput);
+                //if it is true, then it is found
                 if (found) {
                     cout << "\n\t\t" << searchInput << " is found.";
                 }
