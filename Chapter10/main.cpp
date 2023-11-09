@@ -123,7 +123,7 @@ void challenge2() {
 	BTree<int> menu;
 	menu.mainInformation();
 }
-//precondition: going to call my Costco class
+//precondition: 
 //postcondition: going to then call my mainMenuInformation function that will have all the information and the menus as well 
 void challenge3() {
 
