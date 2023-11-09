@@ -3,6 +3,8 @@
 #include<string>
 using namespace std;
 
+//precondition: going to create a class that is a template container
+//postcondition: going to create privates that get me the left and right child
 template<class Item>
 class Binary_Tree_Node {
 private:
@@ -36,6 +38,8 @@ public:
     bool isLeaf() const;
 };
 
+//precondition: going to create a parameter that is a leaf 
+//postcondition: going to then do recursion that will delete each node and then we have to deallocate so it does not leak
 template<class Item>
 void delete_tree(const Binary_Tree_Node<Item>* leaf) { // Recursive
     if (leaf == NULL) {
@@ -49,8 +53,11 @@ void delete_tree(const Binary_Tree_Node<Item>* leaf) { // Recursive
     /* then delete the node */
     cout << "\n\t\tDeleting: " << leaf->getData();
     delete leaf;
+    leaf = NULL;
 }
 
+//precondition: going to pass in 5 parameters
+//postcondition: going to then print each node, the root the childrens and so on
 template<class Item>
 void print_tree(const string& prefix, const Binary_Tree_Node<Item>* node, bool isLeft, bool root, bool last) {
     if (node != NULL) {

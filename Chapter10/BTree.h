@@ -6,8 +6,8 @@ using namespace std;
 char inputChar(string prompt, string lookup);
 int inputInteger(string prompt);
 
-//precondition:
-//postcondition:
+//precondition: going to create a class that is a template container
+//postcondition: going to then have privates that are left and right child, and then a root that has all the nodes, then going to have member functions
 template<typename T >
 class BTree {
 private:
