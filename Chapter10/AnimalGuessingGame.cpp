@@ -35,9 +35,6 @@ void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
         else if (toupper(choice) == 'N') {
             node = node->right;
         }
-        /*else {
-            cout << "Invalid input. Please enter 'yes' or 'no'." << endl;
-        }*/
     }
 
     //if the answer is at the leaf node, print the animal
