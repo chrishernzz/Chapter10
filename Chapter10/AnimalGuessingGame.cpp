@@ -2,19 +2,51 @@
 
 //precondition: going to call the default constructor class
 //postcondition: going to then initialize the privates 
-AnimalGuessingGame::AnimalGuessingGame(): question(""),left(NULL), right(NULL), root(NULL) {}
+AnimalGuessingGame::AnimalGuessingGame() : question(""), left(NULL), right(NULL), root(NULL) {}
 
-AnimalGuessingGame::AnimalGuessingGame(string& q, AnimalGuessingGame* y, AnimalGuessingGame* n): question(q), left(y), right(n){}
+AnimalGuessingGame::AnimalGuessingGame(const string& newQuestion) :question(newQuestion), left(NULL), right(NULL), root(NULL) {}
 
-void AnimalGuessingGame::theTree(){
-    root = new AnimalGuessingGame("Is it a mammal?", new AnimalGuessingGame("Does it have stripes?", new AnimalGuessingGame("Zebra"), new AnimalGuessingGame("Lion")), new AnimalGuessingGame("Is it a bird?", new AnimalGuessingGame("Does it fly?", new AnimalGuessingGame("Eagle"), new AnimalGuessingGame("Penguin")), new AnimalGuessingGame("Gila monster")));
-
+void AnimalGuessingGame::theTree() {
+    //the root
+    root = new AnimalGuessingGame("\n\tIs it a mammal?");
+    //left subtree
+    root->left = new AnimalGuessingGame("\n\tDoes it have stripes?");
+    root->left->left = new AnimalGuessingGame("\n\tZebra");
+    root->left->right = new AnimalGuessingGame("\n\tLion");
+    //right subtree
+    root->right = new AnimalGuessingGame("\n\tIs it a bird?");
+    root->right->left = new AnimalGuessingGame("\n\tDoes it fly?");
+    root->right->left->left = new AnimalGuessingGame("\n\tEagle");
+    root->right->left->right = new AnimalGuessingGame("\n\tPenguin");
+    root->right->right = new AnimalGuessingGame("\n\tGila monster");
 }
 
+void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
+    while (node->left && node->right) {
+        //call the nodes, and ask the questions
+        cout << node->question << " (Y-yes/no): ";
+        char choice = inputChar("", static_cast<string>("YN)"));
+
+        //if yes then go to the left subtree
+        if (toupper(choice) == 'Y') {
+            node = node->left;
+        }
+        //if  no then go to the right subtree
+        else if (toupper(choice) == 'N') {
+            node = node->right;
+        }
+        /*else {
+            cout << "Invalid input. Please enter 'yes' or 'no'." << endl;
+        }*/
+    }
+
+    //if the answer is at the leaf node, print the animal
+    cout << "\n\tThe animal is: " << node->question << endl;
+}
 
 //precondition:
 //postcondition:
-void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file){
+void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
     //if root (nodes) are null then return (base stop)
     if (node == NULL) {
         return;
@@ -26,9 +58,10 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file){
 }
 
 
+
 //precondition:
 //postcondition:
-void AnimalGuessingGame::mainInformation(){
+void AnimalGuessingGame::mainInformation() {
     system("cls");
     char choice;
     //create text file that opens and write to file
@@ -50,6 +83,12 @@ void AnimalGuessingGame::mainInformation(){
 
         switch (toupper(choice)) {
         case 'A': {
+            system("cls");
+            cout << "\n\tThink of animal and press the RETURN/ENTER key to begin...";
+            system("pause");
+            playGame(root);
+            system("pause");
+            system("cls");
         }
                 break;
         case 'B': {

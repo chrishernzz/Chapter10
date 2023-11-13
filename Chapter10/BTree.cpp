@@ -156,7 +156,7 @@ void BTree<T>::mainInformation() {
         cout << "\n\t" << string(82, char(205));
         cout << "\n\t\t0> return";
         cout << "\n\t" << string(82, char(205)) << "\n";
-        choice = inputChar("\t\tOption: ", static_cast<std::string>("ABCDEFG0)"));
+        choice = inputChar("\t\tOption: ", static_cast<string>("ABCDEFG0)"));
 
         switch (toupper(choice)) {
         case 'A': {
