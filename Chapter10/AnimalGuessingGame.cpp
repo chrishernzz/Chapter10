@@ -96,12 +96,19 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
     if (node == NULL) {
         return;
     }
-    //save the current node's question to the file
-    file << "[" << node->question<<"]"<<endl;
-    //add the left first
-    saveToFile(node->left, file);
-    //then add the right one
-    saveToFile(node->right, file);
+    else {
+        if (file.fail()) {
+            return;
+        }
+        else {
+            //save the current node's question to the file
+            file << "[" << node->question << "]" << endl;
+            //add the left first
+            saveToFile(node->left, file);
+            //then add the right one
+            saveToFile(node->right, file);
+        }
+    }
    
 }
 
