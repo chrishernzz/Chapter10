@@ -13,17 +13,17 @@ AnimalGuessingGame::AnimalGuessingGame(const string& newQuestion) :question(newQ
 //postcondition: going to then call the root that hold the nodes, going to set the root, left subtree, and then right subtree
 void AnimalGuessingGame::theTree() {
     //the root
-    root = new AnimalGuessingGame("\n\tIs it a mammal?");
+    root = new AnimalGuessingGame("Is it a mammal?");
     //left subtree
-    root->left = new AnimalGuessingGame("\n\tDoes it have stripes?");
-    root->left->left = new AnimalGuessingGame("\n\tZebra");
-    root->left->right = new AnimalGuessingGame("\n\tLion");
+    root->left = new AnimalGuessingGame("Does it have stripes?");
+    root->left->left = new AnimalGuessingGame("Zebra");
+    root->left->right = new AnimalGuessingGame("Lion");
     //right subtree
-    root->right = new AnimalGuessingGame("\n\tIs it a bird?");
-    root->right->left = new AnimalGuessingGame("\n\tDoes it fly?");
-    root->right->left->left = new AnimalGuessingGame("\n\tEagle");
-    root->right->left->right = new AnimalGuessingGame("\n\tPenguin");
-    root->right->right = new AnimalGuessingGame("\n\tGila monster");
+    root->right = new AnimalGuessingGame("Is it a bird?");
+    root->right->left = new AnimalGuessingGame("Does it fly?");
+    root->right->left->left = new AnimalGuessingGame("Eagle");
+    root->right->left->right = new AnimalGuessingGame("Penguin");
+    root->right->right = new AnimalGuessingGame("Gila monster");
 }
 
 //precondition: going to call the animal guessing game
@@ -54,7 +54,7 @@ void AnimalGuessingGame::deleteEntireTree(AnimalGuessingGame* node) {
 void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
     while (node->left && node->right) {
         //call the nodes, and ask the questions
-        cout << node->question << " (Y-yes/no): ";
+        cout <<"\n\t"<< node->question << " (Y-yes/no): ";
         char choice = inputChar("", static_cast<string>("YN)"));
 
         //if yes then go to the left subtree
@@ -97,7 +97,7 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
         return;
     }
     //save the current node's question to the file
-    file << "\t[" << node->question<<"]"<<endl;
+    file << "[" << node->question<<"]"<<endl;
     //add the left first
     saveToFile(node->left, file);
     //then add the right one
