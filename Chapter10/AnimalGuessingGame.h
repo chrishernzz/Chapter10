@@ -22,8 +22,11 @@ private:
 public:
 	//default constructor
 	AnimalGuessingGame();
-
 	AnimalGuessingGame(const string& data);
+	//deconstructor
+	~AnimalGuessingGame();
+	//delete tree
+	void deleteEntireTree(AnimalGuessingGame* node);
 
 	void theTree();
 	void saveToFile(AnimalGuessingGame* node, ostream& file);

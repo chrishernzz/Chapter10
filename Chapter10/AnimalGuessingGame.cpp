@@ -4,8 +4,13 @@
 //postcondition: going to then initialize the privates 
 AnimalGuessingGame::AnimalGuessingGame() : question(""), left(NULL), right(NULL), root(NULL) {}
 
+//precondition: going to call the constructor class
+//postcondition: going to then initialize the privates and data will now have newData
 AnimalGuessingGame::AnimalGuessingGame(const string& newQuestion) :question(newQuestion), left(NULL), right(NULL), root(NULL) {}
 
+
+//precondition: going to call the tree that will hold the information
+//postcondition: going to then call the root that hold the nodes, going to set the root, left subtree, and then right subtree
 void AnimalGuessingGame::theTree() {
     //the root
     root = new AnimalGuessingGame("\n\tIs it a mammal?");
@@ -21,6 +26,31 @@ void AnimalGuessingGame::theTree() {
     root->right->right = new AnimalGuessingGame("\n\tGila monster");
 }
 
+//precondition: going to call the animal guessing game
+//postcondition: going to then call the recursive function deleteEntireTree() and pass in the root and then set it to NULL
+AnimalGuessingGame::~AnimalGuessingGame() {
+    //deallocate the memory
+    delete(root);
+    //make sure the root is set to null to show that there are no more nodes or else it will have garbage data
+    root = NULL;
+}
+//precondition: going to pass in the animal guessing class class
+//postcondition: going to then delete the node (deallocate the nodes so memory does not leak)
+void AnimalGuessingGame::deleteEntireTree(AnimalGuessingGame* node) {
+    if (node == NULL) {
+        return;
+    }
+    //first delete the left subtree 
+    deleteEntireTree(node->left);
+    //then delete the right subtree
+    deleteEntireTree(node->right);
+
+    //delete the current node
+    delete node;
+}
+
+//precondition: going to pass in the class that is a node as an argument
+//postcondition:
 void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
     while (node->left && node->right) {
         //call the nodes, and ask the questions
@@ -31,18 +61,45 @@ void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
         if (toupper(choice) == 'Y') {
             node = node->left;
         }
-        //if  no then go to the right subtree
+        //if no then go to the right subtree
         else if (toupper(choice) == 'N') {
             node = node->right;
         }
     }
+    cout << "\n\tMy guess is " << node->question << ". Am i right (y/n): ";
+    char choice2 = inputChar("", static_cast<string>("YN"));
+    if (toupper(choice2) == 'Y') {
+        cout << "\n\tYes, I knew it all along!\n\n";
+    }
+    else {
+        // If the guess is wrong, learn from the user
+        string newAnimal;
+        cout << "\n\tI give up. What are you? ";
+        cin.ignore(); // Clear newline character from previous input
+        getline(std::cin, newAnimal);
 
+        cout << "Please specify a yes/no question that distinguishes a "
+            << newAnimal << " from a " << node->question << ": ";
+        string newQuestion;
+        getline(cin, newQuestion);
+
+        cout << "As a " << newAnimal << ", does it " << newQuestion << " (y/n): ";
+        char choice3 = inputChar("", static_cast<string>("YN"));
+
+        //update the  tree
+        node->right = new AnimalGuessingGame(newAnimal);
+        node->left = new AnimalGuessingGame(node->question);
+        node->question = newQuestion;
+        if (toupper(choice3) == 'Y') {
+            swap(node->left, node->right);
+        }
+    }
     //if the answer is at the leaf node, print the animal
-    cout << "\n\tThe animal is: " << node->question << endl;
+    //cout << "\n\tThe animal is: " << node->question << endl;
 }
 
-//precondition:
-//postcondition:
+//precondition: going to pass in two arguments that one acdepts teh ndoe, the other one to open the file
+//postcondition: going to then write to the file
 void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
     //if root (nodes) are null then return (base stop)
     if (node == NULL) {
@@ -52,12 +109,12 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
     saveToFile(node->left, file);
     //then add the right one
     saveToFile(node->right, file);
+    //save the current node's question to the file
+    file << node->question << endl;
 }
 
-
-
-//precondition:
-//postcondition:
+//precondition: going to print the information
+//postcondition: going to create a menu that has options 
 void AnimalGuessingGame::mainInformation() {
     system("cls");
     char choice;
@@ -90,6 +147,8 @@ void AnimalGuessingGame::mainInformation() {
                 break;
         case 'B': {
             saveToFile(root, textFile);
+            //closing file
+            textFile.close();
         }
                 break;
         case '0': {

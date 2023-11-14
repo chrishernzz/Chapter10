@@ -1,0 +1,18 @@
+
+	Zebra
+
+	Lion
+
+	Does it have stripes?
+
+	Eagle
+
+	Penguin
+
+	Does it fly?
+
+	Gila monster
+
+	Is it a bird?
+
+	Is it a mammal?
