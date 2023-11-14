@@ -96,12 +96,13 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
     if (node == NULL) {
         return;
     }
+    //save the current node's question to the file
+    file << "\t[" << node->question<<"]"<<endl;
     //add the left first
     saveToFile(node->left, file);
     //then add the right one
     saveToFile(node->right, file);
-    //save the current node's question to the file
-    file <<"\n\t"<< node->question << endl;
+   
 }
 
 //precondition: going to print the information
@@ -109,9 +110,10 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
 void AnimalGuessingGame::mainInformation() {
     system("cls");
     char choice;
+    string fileName = "animal.txt";
     //create text file that opens and write to file
     ofstream textFile;
-    textFile.open("animal.txt");
+    textFile.open(fileName);
     do {
         cout << "\n\t3> Animal Guessing Game";
         cout << "\n\t" << string(82, char(205));
@@ -138,6 +140,9 @@ void AnimalGuessingGame::mainInformation() {
                 break;
         case 'B': {
             saveToFile(root, textFile);
+            cout << "\n\tNew data file. " << fileName << ", has been saved.\n\n";
+            system("pause");
+            system("cls");
             //closing file
             textFile.close();
         }
