@@ -50,7 +50,7 @@ void AnimalGuessingGame::deleteEntireTree(AnimalGuessingGame* node) {
 }
 
 //precondition: going to pass in the class that is a node as an argument
-//postcondition:
+//postcondition: going to then loop the questions and check if they are true or not, going to determine if the animal was right
 void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
     while (node->left && node->right) {
         //call the nodes, and ask the questions
@@ -72,18 +72,11 @@ void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
         cout << "\n\tYes, I knew it all along!\n\n";
     }
     else {
-        // If the guess is wrong, learn from the user
-        string newAnimal;
-        cout << "\n\tI give up. What are you? ";
-        cin.ignore(); // Clear newline character from previous input
-        getline(std::cin, newAnimal);
+        //if the guess is wrong, learn from the user
+        string newAnimal = inputString("\n\tI give up. What are you ? ", false);
+        string newQuestion = inputString("\n\tPlease specify a yes/no question that distinguishes a " + newAnimal + " from a " + node->question + ": ", true);
 
-        cout << "Please specify a yes/no question that distinguishes a "
-            << newAnimal << " from a " << node->question << ": ";
-        string newQuestion;
-        getline(cin, newQuestion);
-
-        cout << "As a " << newAnimal << ", does it " << newQuestion << " (y/n): ";
+        cout << "\n\tAs a " << newAnimal << ", does it " << newQuestion << " (y/n): ";
         char choice3 = inputChar("", static_cast<string>("YN"));
 
         //update the  tree
@@ -94,8 +87,6 @@ void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
             swap(node->left, node->right);
         }
     }
-    //if the answer is at the leaf node, print the animal
-    //cout << "\n\tThe animal is: " << node->question << endl;
 }
 
 //precondition: going to pass in two arguments that one acdepts teh ndoe, the other one to open the file
@@ -110,7 +101,7 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
     //then add the right one
     saveToFile(node->right, file);
     //save the current node's question to the file
-    file << node->question << endl;
+    file <<"\n\t"<< node->question << endl;
 }
 
 //precondition: going to print the information

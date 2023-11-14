@@ -7,6 +7,7 @@ using namespace std;
 //input (1) header files inputs validation
 char inputChar(string prompt, string lookup);
 int inputInteger(string prompt);
+string inputString(string prompt, bool spaces);
 
 //precondition:
 //postcondition:
