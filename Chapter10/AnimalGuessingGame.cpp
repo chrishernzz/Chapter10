@@ -54,7 +54,7 @@ void AnimalGuessingGame::deleteEntireTree(AnimalGuessingGame* node) {
 void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
     while (node->left && node->right) {
         //call the nodes, and ask the questions
-        cout <<"\n\t"<< node->question << " (Y-yes/no): ";
+        cout << "\n\t" << node->question << " (Y-yes/no): ";
         char choice = inputChar("", static_cast<string>("YN)"));
 
         //if yes then go to the left subtree
@@ -109,7 +109,7 @@ void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
             saveToFile(node->right, file);
         }
     }
-   
+
 }
 
 //precondition: going to print the information
@@ -125,6 +125,16 @@ void AnimalGuessingGame::mainInformation() {
         cout << "\n\t3> Animal Guessing Game";
         cout << "\n\t" << string(82, char(205));
         cout << "\n\n\tA game tree for a simple game of 'animal' twenty questions would look like: \n";
+        cout << "\n\t\t[ Is it a mammal? ]" << endl;
+        cout << "                    /         \\" << endl;
+        cout << "                   /           \\" << endl;
+        cout << "[ Does it have stripes? ]     [ Is it a bird? ]" << endl;
+        cout << "         /       \\                  /       \\" << endl;
+        cout << "        /         \\                /         \\" << endl;
+        cout << "( Zebra )    ( Lion )    [ Does it fly? ]  ( Gila monster )" << endl;
+        cout << "                           /       \\" << endl;
+        cout << "                          /         \\" << endl;
+        cout << "                    ( Eagle )     ( Penguin )" << endl;
         cout << "\n\n\n\n\tA learning version of twenty questions: one that not only plays the game, but learns new\n\tobjects when it loses.\n";
         cout << "\n\n\tWelcome to Animal Guessing Game";
         cout << "\n\t" << string(82, char(205));

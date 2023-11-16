@@ -1,5 +1,5 @@
 //Name: Christian Hernandez
-//Date: 11/15/2023
+//Date: 11/13/2023
 //subscription: CMPR131
 
 //Credit: Christian Hernandez,Bryan Alarcon,Thanh Tran, Joe Bryant,Erik Santana, Saul Merino
@@ -37,7 +37,7 @@ int main()
 //postcondition: it will return an int (the choice of the menu)
 int menuOption() {
 	system("cls");
-	cout << "\n\tCMPR131 Chapter 10: Trees by Christian Hernandez(11/6/2023)";
+	cout << "\n\tCMPR131 Chapter 10: Trees by Christian Hernandez(11/13/2023)";
 	cout << "\n\t" << string(100, char(205));
 	cout << "\n\t\t1> Trees of strings";
 	cout << "\n\t\t2> Trees container of integers";
@@ -50,7 +50,7 @@ int menuOption() {
 }
 
 //precondition: going to call the Binary_Tree_Node class and then pass in a template that is a string
-//postcondition: 
+//postcondition: going to then allocate to get the new data
 void challenge1() {
 	system("cls");
 	//will hold all the root
@@ -124,11 +124,10 @@ void challenge2() {
 	BTree<int> menu;
 	menu.mainInformation();
 }
-//precondition: 
+//precondition: going to call my Animal Guessing Game to play the game
 //postcondition: going to then call my mainMenuInformation function that will have all the information and the menus as well 
 void challenge3() {
 	AnimalGuessingGame menu;
-	//this will let us create the tree
 	menu.theTree();
 	menu.mainInformation();
 }

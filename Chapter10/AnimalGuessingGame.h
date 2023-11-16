@@ -9,8 +9,8 @@ char inputChar(string prompt, string lookup);
 int inputInteger(string prompt);
 string inputString(string prompt, bool spaces);
 
-//precondition:
-//postcondition:
+//precondition: going to create a animal guessing game
+//postcondition: going to then get the left and right children for yes and no
 class AnimalGuessingGame {
 private:
 	string question;
@@ -28,12 +28,10 @@ public:
 	~AnimalGuessingGame();
 	//delete tree
 	void deleteEntireTree(AnimalGuessingGame* node);
-
 	void theTree();
 	void saveToFile(AnimalGuessingGame* node, ostream& file);
 
 	void playGame(AnimalGuessingGame* node);
-
 	//member function for menu
 	void mainInformation();
 };
