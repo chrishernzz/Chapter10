@@ -127,6 +127,7 @@ void challenge2() {
 //precondition: going to call my Animal Guessing Game to play the game
 //postcondition: going to then call my mainMenuInformation function that will have all the information and the menus as well 
 void challenge3() {
-	AnimalGuessingGame<string> menu;
+	AnimalGuessingGame menu;
+	menu.theTree();
 	menu.mainInformation();
 }

@@ -1,53 +1,37 @@
 #pragma once
-#include <iostream>
-#include <fstream>
-#include <string>
+#include<iostream>
+#include<string>
+#include<fstream>
 using namespace std;
 
-bool inquire(string prompt);
-char inputChar(string prompt, char yes, char no);
+//input (1) header files inputs validation
+char inputChar(string prompt, string lookup);
+int inputInteger(string prompt);
 string inputString(string prompt, bool spaces);
-char inputChar(string prompt, string options);
 
-template <class Item>
-class AnimalGuessingGame{
+//precondition: going to create a animal guessing game
+//postcondition: going to then get the left and right children for yes and no
+class AnimalGuessingGame {
 private:
-    Item data_field;
-    AnimalGuessingGame* left_field;
-    AnimalGuessingGame* right_field;
-    static string remove_brackets(const string& str);
-    static AnimalGuessingGame<Item>* build_tree_from_file(ifstream& file);
-
+	string question;
+	//this well be for yes
+	AnimalGuessingGame* left;
+	//this will be for no
+	AnimalGuessingGame* right;
+	//will hold the nodes 
+	AnimalGuessingGame* root;
 public:
-    // TYPEDEF
-    typedef Item value_type;
+	//default constructor
+	AnimalGuessingGame();
+	AnimalGuessingGame(const string& data);
+	//deconstructor
+	~AnimalGuessingGame();
+	//delete tree
+	void deleteEntireTree(AnimalGuessingGame* node);
+	void theTree();
+	void saveToFile(AnimalGuessingGame* node, ostream& file);
 
-    // CONSTRUCTOR
-    AnimalGuessingGame(const Item& init_data = Item(), AnimalGuessingGame* init_left = nullptr, AnimalGuessingGame* init_right = nullptr);
-
-    // MODIFICATION MEMBER FUNCTIONS
-    Item& data();
-    AnimalGuessingGame*& left();
-    AnimalGuessingGame*& right();
-    void set_data(const Item& new_data);
-    void set_left(AnimalGuessingGame* new_left);
-    void set_right(AnimalGuessingGame* new_right);
-
-    // CONSTANT MEMBER FUNCTIONS
-    const Item& data() const;
-    const AnimalGuessingGame* left() const;
-    const AnimalGuessingGame* right() const;
-    bool is_leaf() const;
-
-    // MEMBER FUNCTIONS
-    void tree_clear(AnimalGuessingGame<Item>*& root_ptr);
-    AnimalGuessingGame<Item>* tree_copy(const AnimalGuessingGame<Item>* root_ptr);
-    static AnimalGuessingGame<Item>* beginning_tree(const string& file_name);
-    void ask_and_move(AnimalGuessingGame<string>*& current_ptr);
-    void learn(AnimalGuessingGame<string>* leaf_ptr);
-    void play(AnimalGuessingGame<string>* current_ptr);
-    void save_tree_to_file(const string& file_name);
-    static void save_tree_to_file_recursive(ofstream& file, AnimalGuessingGame<string>* root);
-    void mainInformation();
+	void playGame(AnimalGuessingGame* node);
+	//member function for menu
+	void mainInformation();
 };
-
