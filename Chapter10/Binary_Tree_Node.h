@@ -88,4 +88,3 @@ void print_tree(const string& prefix, const Binary_Tree_Node<Item>* node, bool i
         print_tree(prefix + (isLeft ? s : "    "), node->getRight(), false, false, true);
     }
 }
-

@@ -76,4 +76,3 @@ template<class Item>
 bool Binary_Tree_Node<Item>::isLeaf() const {
 	return (left == NULL && right == NULL);
 }
-

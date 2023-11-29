@@ -319,3 +319,14 @@ string removeLeadingTrailingSpaces(const string& input)
 	size_t endPos = input.find_last_not_of(" \t\n\r");
 	return input.substr(startPos, endPos - startPos + 1);
 }
+
+//PreCondition: a String prompt
+//PostCondition: returns true if the answer is yes otherwise return false
+bool inquire(string prompt)
+{
+	char input = inputChar(prompt, 'Y', 'N');
+	if (input == 'Y')
+		return true;
+	else
+		return false;
+}
