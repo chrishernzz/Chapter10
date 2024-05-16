@@ -2,8 +2,6 @@
 //Date: 11/13/2023
 //subscription: CMPR131
 
-//Credit: Christian Hernandez,Bryan Alarcon,Thanh Tran, Joe Bryant,Erik Santana, Saul Merino
-
 #include<iostream>
 #include"input (1).h"
 #include"BTree.cpp"

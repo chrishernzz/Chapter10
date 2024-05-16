@@ -137,7 +137,7 @@ void AnimalGuessingGame::mainInformation() {
         cout << "                    ( Eagle )     ( Penguin )" << endl;
         cout << "\n\n\n\n\tA learning version of twenty questions: one that not only plays the game, but learns new\n\tobjects when it loses.\n";
         cout << "\n\n\tWelcome to Animal Guessing Game";
-        cout << "\n\t" << string(82, char(205));
+        cout << "\n\t" << string(82, char(205));    
         cout << "\n\t\tA> Play the game";
         cout << "\n\t\tB> Save the game file";
         cout << "\n\t" << string(82, char(205));
