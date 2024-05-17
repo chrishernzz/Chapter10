@@ -7,25 +7,6 @@ AnimalGuessingGame::AnimalGuessingGame() : question(""), left(NULL), right(NULL)
 //precondition: going to call the constructor class
 //postcondition: going to then initialize the privates and data will now have newData
 AnimalGuessingGame::AnimalGuessingGame(const string& newQuestion) :question(newQuestion), left(NULL), right(NULL), root(NULL) {}
-
-
-//precondition: going to call the tree that will hold the information
-//postcondition: going to then call the root that hold the nodes, going to set the root, left subtree, and then right subtree
-void AnimalGuessingGame::theTree() {
-    //the root
-    root = new AnimalGuessingGame("Is it a mammal?");
-    //left subtree
-    root->left = new AnimalGuessingGame("Does it have stripes?");
-    root->left->left = new AnimalGuessingGame("Zebra");
-    root->left->right = new AnimalGuessingGame("Lion");
-    //right subtree
-    root->right = new AnimalGuessingGame("Is it a bird?");
-    root->right->left = new AnimalGuessingGame("Does it fly?");
-    root->right->left->left = new AnimalGuessingGame("Eagle");
-    root->right->left->right = new AnimalGuessingGame("Penguin");
-    root->right->right = new AnimalGuessingGame("Gila monster");
-}
-
 //precondition: going to call the animal guessing game
 //postcondition: going to then call the recursive function deleteEntireTree() and pass in the root and then set it to NULL
 AnimalGuessingGame::~AnimalGuessingGame() {
@@ -49,69 +30,127 @@ void AnimalGuessingGame::deleteEntireTree(AnimalGuessingGame* node) {
     delete node;
 }
 
+//precondition: going to call the tree that will hold the information
+//postcondition: going to then call the root that hold the nodes, going to set the root, left subtree, and then right subtree, checking if the file is open and if not then first write
+void AnimalGuessingGame::theTree() {
+    ifstream readFile("animal.txt");
+    //check if file is open (if there is data in the animal.txt
+    if (readFile.is_open()) {
+        root = loadFromFile(readFile);
+        readFile.close();
+    }
+    //if there is no file then create and input the information
+    else {
+        root = new AnimalGuessingGame("Is it a mammal?");
+        root->left = new AnimalGuessingGame("Does it have stripes?");
+        root->left->left = new AnimalGuessingGame("Zebra");
+        root->left->right = new AnimalGuessingGame("Lion");
+        root->right = new AnimalGuessingGame("Is it a bird?");
+        root->right->left = new AnimalGuessingGame("Does it fly?");
+        root->right->left->left = new AnimalGuessingGame("Eagle");
+        root->right->left->right = new AnimalGuessingGame("Penguin");
+        root->right->right = new AnimalGuessingGame("Gila monster");
+        //you then have to write it to the file
+        ofstream writeFile("animal.txt");
+        if (writeFile.is_open()) {
+            saveToFile(root, writeFile);
+            writeFile.close();
+        }
+        else {
+            cout << "Error: File is not open for writing." << endl;
+        }
+    }
+}
+//precondition: going to pass in a read file for reading
+//postcondition: going to then read the file and get the information 
+AnimalGuessingGame* AnimalGuessingGame::loadFromFile(ifstream& readFile) {
+    string line;
+    if (!getline(readFile, line) || line.empty()) {
+        return NULL;
+    }
+
+    //get rid of brackets
+    line = line.substr(1, line.size() - 2);
+    AnimalGuessingGame* node = new AnimalGuessingGame(line);
+
+    //check if this is a leaf node or a question node by peeking at the next character
+    if (readFile.peek() == '[') {
+        node->left = loadFromFile(readFile);
+        node->right = loadFromFile(readFile);
+    }
+    return node;
+}
+//precondition: going to pass in two arguments that one accepts a node, the other one to open the file
+//postcondition: going to then write to the file
+void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
+    //base case
+    if (node == NULL) {
+        return;
+    }
+    if (file.fail()) {
+        return;
+    }
+    //save the current node's question to the file
+    file << "[" << node->question << "]" << endl;
+    //add the left first
+    saveToFile(node->left, file);
+    //then add the right one
+    saveToFile(node->right, file);
+}
+
+
 //precondition: going to pass in the class that is a node as an argument
 //postcondition: going to then loop the questions and check if they are true or not, going to determine if the animal was right
 void AnimalGuessingGame::playGame(AnimalGuessingGame* node) {
+    //base case
+    if (node == NULL) {
+        cout << "\n\t\tERROR: NO DATA TO PLAY GAME...";
+        return;
+    }
+    //check the left and right questions
     while (node->left && node->right) {
-        //call the nodes, and ask the questions
-        cout << "\n\t" << node->question << " (Y-yes/no): ";
-        char choice = inputChar("", static_cast<string>("YN)"));
-
-        //if yes then go to the left subtree
+        cout << "\n\t" << node->question << " (Y-yes/N-no): ";
+        char choice = inputChar("", static_cast<string>("YN"));
+        //if user clicks Yes then go to the left subtree
         if (toupper(choice) == 'Y') {
             node = node->left;
         }
-        //if no then go to the right subtree
-        else if (toupper(choice) == 'N') {
+        //go to right subtree
+        else {
             node = node->right;
         }
     }
-    cout << "\n\tMy guess is " << node->question << ". Am i right (y/n): ";
+
+    cout << "\n\tMy guess is " << node->question << ". Am I right (y/n): ";
     char choice2 = inputChar("", static_cast<string>("YN"));
+    //if answer is Yes then it is right along
     if (toupper(choice2) == 'Y') {
         cout << "\n\tYes, I knew it all along!\n\n";
     }
     else {
-        //if the guess is wrong, learn from the user
-        string newAnimal = inputString("\n\tI give up. What are you ? ", false);
+        string newAnimal = inputString("\n\tI give up. What are you? ", false);
         string newQuestion = inputString("\n\tPlease specify a yes/no question that distinguishes a " + newAnimal + " from a " + node->question + ": ", true);
-
         cout << "\n\tAs a " << newAnimal << ", does it " << newQuestion << " (y/n): ";
         char choice3 = inputChar("", static_cast<string>("YN"));
 
-        //update the  tree
         node->right = new AnimalGuessingGame(newAnimal);
         node->left = new AnimalGuessingGame(node->question);
         node->question = newQuestion;
         if (toupper(choice3) == 'Y') {
             swap(node->left, node->right);
         }
-    }
-}
 
-//precondition: going to pass in two arguments that one acdepts teh ndoe, the other one to open the file
-//postcondition: going to then write to the file
-void AnimalGuessingGame::saveToFile(AnimalGuessingGame* node, ostream& file) {
-    //if root (nodes) are null then return (base stop)
-    if (node == NULL) {
-        return;
-    }
-    else {
-        if (file.fail()) {
-            return;
+        //write the information to the text file
+        ofstream writeFile("animal.txt");
+        if (writeFile.is_open()) {
+            saveToFile(root, writeFile);
+            writeFile.close();
         }
         else {
-            //save the current node's question to the file
-            file << "[" << node->question << "]" << endl;
-            //add the left first
-            saveToFile(node->left, file);
-            //then add the right one
-            saveToFile(node->right, file);
+            cout << "\n\tError: Unable to open file for writing.\n\n";
         }
     }
-
 }
-
 //precondition: going to print the information
 //postcondition: going to create a menu that has options 
 void AnimalGuessingGame::mainInformation() {

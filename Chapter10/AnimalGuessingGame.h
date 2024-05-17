@@ -28,8 +28,10 @@ public:
 	~AnimalGuessingGame();
 	//delete tree
 	void deleteEntireTree(AnimalGuessingGame* node);
+
 	void theTree();
 	void saveToFile(AnimalGuessingGame* node, ostream& file);
+	AnimalGuessingGame* loadFromFile(ifstream& readFile);
 
 	void playGame(AnimalGuessingGame* node);
 	//member function for menu
